@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 
+import { writeFile } from '../utils/write.file';
+
 export const apiFiles = async (req: Request, res: Response) => {
   const file = req.file;
   if (file) {
@@ -10,11 +12,12 @@ export const apiFiles = async (req: Request, res: Response) => {
         name: row[0],
         city: row[1],
         country: row[2],
-        favority_sport: row[3],
+        favorite_sport: row[3],
       };
       return dat;
     });
-    return res.status(200).json(data);
+    await writeFile(data);
+    return res.sendStatus(200);
   }
-  return res.send('mesagem');
+  return res.status(400).json({ message: 'Empty file' });
 };
