@@ -4,7 +4,11 @@ import { writeFile } from '../utils/write.file';
 
 export const apiFiles = async (req: Request, res: Response) => {
   const file = req.file;
+
   if (file) {
+    if (!file.originalname.endsWith('.csv')) {
+      return res.status(400).json({ message: 'Invalid extension' });
+    }
     const rows = file.buffer.toString('utf-8').split('\r\n');
     const data = rows.map(el => {
       const row = el.split(',');
