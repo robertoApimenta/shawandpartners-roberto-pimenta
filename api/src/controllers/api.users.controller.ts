@@ -18,12 +18,11 @@ export const apiUsers = async (req: Request, res: Response) => {
   if (Array.isArray(fileContents)) {
     data = fileContents as csvData[];
   } else {
-    // Manipule o caso em que o conteúdo do arquivo não é um array de objetos
     throw new Error('Conteúdo do arquivo inválido.');
   }
 
   if (q) {
-    const regex = new RegExp(q.toString(), 'i'); // 'i' torna a pesquisa insensível a maiúsculas/minúsculas
+    const regex = new RegExp(q.toString(), 'i');
     const result = data.filter(obj => {
       for (const campo in obj) {
         if (
