@@ -10,6 +10,7 @@ export const apiFiles = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Invalid extension' });
     }
     const rows = file.buffer.toString('utf-8').split('\r\n');
+    rows.shift();
     const data = rows.map(el => {
       const row = el.split(',');
       const dat = {
@@ -21,7 +22,7 @@ export const apiFiles = async (req: Request, res: Response) => {
       return dat;
     });
     await writeFile(data);
-    return res.sendStatus(200);
+    return res.status(200).json(data);
   }
   return res.status(400).json({ message: 'Empty file' });
 };

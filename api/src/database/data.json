@@ -1,11 +1,5 @@
 [
   {
-    "name": "name",
-    "city": "city",
-    "country": "country",
-    "favorite_sport": "favorite_sport"
-  },
-  {
     "name": "John Doe",
     "city": "New York",
     "country": "USA",
