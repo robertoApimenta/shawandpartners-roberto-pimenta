@@ -10,8 +10,10 @@ interface DataObject {
   favorite_sport: string;
 }
 
-export const writeFile = async (data: DataObject[]) => {
+const writeFile = async (data: DataObject[]) => {
   const jsonData = JSON.stringify(data, null, 2);
   await fs.writeFile(databasepath, jsonData, 'utf-8');
   return [];
 };
+
+export default { writeFile };

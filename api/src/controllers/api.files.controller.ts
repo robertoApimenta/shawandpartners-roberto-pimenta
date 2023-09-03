@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
-import { writeFile } from '../utils/write.file';
+import utils from '../utils/write.file';
 
-export const apiFiles = async (req: Request, res: Response) => {
+const apiFiles = async (req: Request, res: Response) => {
   const file = req.file;
 
   if (file) {
@@ -21,8 +21,10 @@ export const apiFiles = async (req: Request, res: Response) => {
       };
       return dat;
     });
-    await writeFile(data);
+    await utils.writeFile(data);
     return res.status(200).json(data);
   }
   return res.status(400).json({ message: 'Empty file' });
 };
+
+export default { apiFiles };

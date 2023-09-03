@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { readFile } from '../utils/read.file';
+import utils from '../utils/read.file';
 
 interface csvData {
   name: string;
@@ -12,7 +12,7 @@ interface csvData {
 export const apiUsers = async (req: Request, res: Response) => {
   const { q } = req.query;
 
-  const fileContents = await readFile();
+  const fileContents = await utils.readFile();
   let data: csvData[] = [];
 
   if (Array.isArray(fileContents)) {
